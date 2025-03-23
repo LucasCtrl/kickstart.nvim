@@ -154,7 +154,7 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 20
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -946,6 +946,26 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      -- Minimal and fast autopairs
+      require('mini.pairs').setup()
+
+      -- Move any selection in any direction
+      require('mini.move').setup {
+        mappings = {
+          -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl
+          left = '<M-left>',
+          right = '<M-right>',
+          down = '<M-down>',
+          up = '<M-up>',
+
+          -- Move current line in Normal mode
+          line_left = '<M-left>',
+          line_right = '<M-right>',
+          line_down = '<M-down>',
+          line_up = '<M-up>',
+        },
+      }
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
